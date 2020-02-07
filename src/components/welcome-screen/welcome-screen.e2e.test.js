@@ -21,5 +21,5 @@ it(`Should welcome button be pressed`, () => {
 
   welcomeButton.props().onClick();
 
-  expect(onWelcomeButtonClick.mock.calls.length).toBe(1);
+  expect(onWelcomeButtonClick).toHaveBeenCalledTimes(1);
 });
