@@ -8,7 +8,7 @@
     "test": "npm run eslint && npm run test.jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
-    "test.jest": "jest",
+    "test.jest": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
