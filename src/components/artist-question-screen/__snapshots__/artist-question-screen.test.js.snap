@@ -84,7 +84,6 @@ exports[`Should ArtistQuestionScreen render correctly 1`] = `
     </div>
     <form
       className="game__artist"
-      onSubmit={[Function]}
     >
       <div
         className="artist"
