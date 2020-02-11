@@ -11,7 +11,6 @@ class ArtistQuestionScreen extends PureComponent {
 
   render() {
     const {onAnswer, question} = this.props;
-    const {answers: userAnswers} = this.state;
     const {
       answers,
       song,
@@ -42,7 +41,7 @@ class ArtistQuestionScreen extends PureComponent {
             <div className="track">
               <button className="track__button track__button--play" type="button" />
               <div className="track__status">
-                <audio />
+                <audio src={song.src}/>
               </div>
             </div>
           </div>
