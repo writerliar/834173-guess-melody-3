@@ -72,8 +72,8 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
-  expect(onAnswer.mock.cals[0][0]).toMatchObject(question);
-  expect(onAnswer.mock.cals[0][1]).toMatchObject(userAnswer);
+  expect(onAnswer).toHaveBeenLastCalledWith(question);
+  expect(onAnswer).toHaveBeenLastCalledWith(userAnswer);
 
   expect(
       genreQuestion.find(`input`).map((it) => it.prop(`checked`))

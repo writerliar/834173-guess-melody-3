@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {GameTypes} from "../../const.js";
+import {GameTypes, TIMER_SVG_STYLES} from "../../const.js";
 
 const ArtistQuestionScreen = (props) => {
   const {onAnswer, question} = props;
@@ -18,7 +18,7 @@ const ArtistQuestionScreen = (props) => {
         </a>
 
         <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-          <circle className="timer__line" cx="390" cy="390" r="370" style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
+          <circle className="timer__line" cx="390" cy="390" r="370" style={TIMER_SVG_STYLES}/>
         </svg>
 
         <div className="game__mistakes">

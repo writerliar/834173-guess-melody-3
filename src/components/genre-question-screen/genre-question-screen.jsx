@@ -1,19 +1,27 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameTypes} from "../../const.js";
+import {GameTypes, TIMER_SVG_STYLES} from "../../const.js";
+
+const chooseAnswer = (evt, userAnswers, i, element) => {
+  const value = evt.target.checked;
+
+  element.setState({
+    answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+  });
+};
 
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      answers: [false, false, false, false],
+      userAnswers: [false, false, false, false],
     };
   }
 
   render() {
     const {onAnswer, question} = this.props;
-    const {answers: userAnswers} = this.state;
+    const {userAnswers} = this.state;
     const {
       answers,
       genre,
@@ -28,7 +36,7 @@ class GenreQuestionScreen extends PureComponent {
           </a>
 
           <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-            <circle className="timer__line" cx="390" cy="390" r="370" style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
+            <circle className="timer__line" cx="390" cy="390" r="370" style={{TIMER_SVG_STYLES}}/>
           </svg>
 
           <div className="game__mistakes">
@@ -44,7 +52,7 @@ class GenreQuestionScreen extends PureComponent {
             className="game__tracks"
             onSubmit={(evt) => {
               evt.preventDefault();
-              onAnswer(question, this.state.answers);
+              onAnswer(question, this.state);
             }}
           >
             {answers.map((answer, i)=>(
@@ -57,13 +65,7 @@ class GenreQuestionScreen extends PureComponent {
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`}
                     id={`answer-${i}`}
                     checked={userAnswers[i]}
-                    onChange={(evt) => {
-                      const value = evt.target.checked;
-
-                      this.setState({
-                        answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-                      });
-                    }}
+                    onChange={(evt) => chooseAnswer(evt, userAnswers, i, this)}
                   />
                   <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
                 </div>

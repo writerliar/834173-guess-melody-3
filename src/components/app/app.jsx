@@ -4,14 +4,20 @@ import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
-import {GameTypes} from "../../const.js";
+import {GameTypes, NO_STEPS} from "../../const.js";
+
+const setAnswer = (element) => {
+  element.setState((prevState) => ({
+    step: prevState.step + 1,
+  }));
+};
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      step: -1,
+      step: NO_STEPS,
     };
   }
 
@@ -38,23 +44,15 @@ class App extends PureComponent {
         case GameTypes.ARTIST:
           return (
             <ArtistQuestionScreen
-              question={questions[1]}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
+              question={question}
+              onAnswer={() => setAnswer(this)}
             />
           );
         case GameTypes.GENRE:
           return (
             <GenreQuestionScreen
-              question={questions[0]}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
+              question={question}
+              onAnswer={() => setAnswer(this)}
             />
           );
       }

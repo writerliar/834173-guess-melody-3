@@ -43,7 +43,7 @@ it(`Click on user answer should pass to the callback data-object from which this
   const artistQuestion = shallow(
       <ArtistQuestionScreen
         question={question}
-        onAnswer={() => {}}
+        onAnswer={onAnswer}
       />
   );
 
