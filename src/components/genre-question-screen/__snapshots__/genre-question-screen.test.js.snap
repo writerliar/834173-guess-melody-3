@@ -34,9 +34,11 @@ exports[`Should GenreQuestionScreen render correctly 1`] = `
         r="370"
         style={
           Object {
-            "filter": "url(#blur)",
-            "transform": "rotate(-90deg) scaleY(-1)",
-            "transformOrigin": "center",
+            "TIMER_SVG_STYLES": Object {
+              "filter": "url(#blur)",
+              "transform": "rotate(-90deg) scaleY(-1)",
+              "transformOrigin": "center",
+            },
           }
         }
       />

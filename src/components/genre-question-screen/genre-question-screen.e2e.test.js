@@ -54,7 +54,7 @@ it(`When user answers genre question form is not sent`, () => {
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
   const {question} = mock;
   const onAnswer = jest.fn((...args) => [...args]);
-  const userAnswer = [false, false, false, false];
+  const userAnswer = [false, true, false, false];
 
 
   const genreQuestion = shallow(
