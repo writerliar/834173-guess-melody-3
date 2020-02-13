@@ -36,7 +36,7 @@ it(`When user answers genre question form is not sent`, () => {
   const genreQuestion = shallow(
       <GenreQuestionScreen
         question={question}
-        onAnswer={() => {}}
+        onAnswer={onAnswer}
       />
   );
 
