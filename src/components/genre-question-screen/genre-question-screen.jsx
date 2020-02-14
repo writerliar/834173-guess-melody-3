@@ -6,7 +6,7 @@ const chooseAnswer = (evt, userAnswers, i, element) => {
   const value = evt.target.checked;
 
   element.setState({
-    answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+    userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
   });
 };
 
@@ -22,6 +22,7 @@ class GenreQuestionScreen extends PureComponent {
   render() {
     const {onAnswer, question} = this.props;
     const {userAnswers} = this.state;
+
     const {
       answers,
       genre,

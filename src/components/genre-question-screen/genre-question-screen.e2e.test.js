@@ -7,7 +7,7 @@ configure({
   adapter: new Adapter(),
 });
 
-const mock = {
+const question = {
   type: `genre`,
   genre: `rock`,
   answers: [
@@ -31,7 +31,6 @@ const mock = {
 };
 
 it(`When user answers genre question form is not sent`, () => {
-  const {question} = mock;
   const onAnswer = jest.fn();
   const genreQuestion = shallow(
       <GenreQuestionScreen
@@ -52,30 +51,27 @@ it(`When user answers genre question form is not sent`, () => {
 });
 
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
-  const {question} = mock;
   const onAnswer = jest.fn((...args) => [...args]);
-  const userAnswer = [false, true, false, false];
-
+  const userAnswers = [false, true, false, false];
 
   const genreQuestion = shallow(
       <GenreQuestionScreen
+        onAnswer={onAnswer}
         question={question}
-        onAnswer={() => {}}
       />
   );
 
-  const form = genreQuestion.find(`form`);
   const inputTwo = genreQuestion.find(`input`).at(1);
-
   inputTwo.simulate(`change`, {target: {checked: true}});
+
+  const form = genreQuestion.find(`form`);
   form.simulate(`submit`, {preventDefault() {}});
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
-  expect(onAnswer).toHaveBeenLastCalledWith(question);
-  expect(onAnswer).toHaveBeenLastCalledWith(userAnswer);
+  expect(onAnswer).toHaveBeenLastCalledWith(question, userAnswers);
 
   expect(
       genreQuestion.find(`input`).map((it) => it.prop(`checked`))
-  ).toEqual(userAnswer);
+  ).toEqual(userAnswers);
 });

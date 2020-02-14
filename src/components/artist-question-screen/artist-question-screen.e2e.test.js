@@ -7,7 +7,7 @@ configure({
   adapter: new Adapter(),
 });
 
-const mock = {
+const question = {
   type: `artist`,
   song: {
     artist: ``,
@@ -34,11 +34,10 @@ const mockEvent = {
 };
 
 it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
-  const {question} = mock;
   const onAnswer = jest.fn();
   const userAnswer = {
     artist: `one`,
-    picture: `pic-one`,
+    picture: `artist-1`,
   };
 
   const artistQuestion = shallow(
@@ -55,6 +54,5 @@ it(`Click on user answer should pass to the callback data-object from which this
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
-  expect(onAnswer).toHaveBeenLastCalledWith(question);
-  expect(onAnswer).toHaveBeenLastCalledWith(userAnswer);
+  expect(onAnswer).toHaveBeenLastCalledWith(question, userAnswer);
 });
