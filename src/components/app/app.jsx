@@ -6,12 +6,6 @@ import ArtistQuestionScreen from "../artist-question-screen/artist-question-scre
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 import {GameTypes, NO_STEPS} from "../../const.js";
 
-const setAnswer = (element) => {
-  element.setState((prevState) => ({
-    step: prevState.step + 1,
-  }));
-};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -21,12 +15,18 @@ class App extends PureComponent {
     };
   }
 
+  _setAnswer() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1,
+    }));
+  }
+
   _renderGameScreen() {
     const {errorsCount, questions} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === NO_STEPS || step >= questions.length) {
       return (
         <WelcomeScreen
           errorsCount={errorsCount}
@@ -45,14 +45,14 @@ class App extends PureComponent {
           return (
             <ArtistQuestionScreen
               question={question}
-              onAnswer={() => setAnswer(this)}
+              onAnswer={() => this._setAnswer()}
             />
           );
         case GameTypes.GENRE:
           return (
             <GenreQuestionScreen
               question={question}
-              onAnswer={() => setAnswer(this)}
+              onAnswer={() => this._setAnswer()}
             />
           );
       }

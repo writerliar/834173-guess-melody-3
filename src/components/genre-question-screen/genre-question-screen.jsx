@@ -2,14 +2,6 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {GameTypes, TIMER_SVG_STYLES} from "../../const.js";
 
-const chooseAnswer = (evt, userAnswers, i, element) => {
-  const value = evt.target.checked;
-
-  element.setState({
-    userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-  });
-};
-
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -17,6 +9,14 @@ class GenreQuestionScreen extends PureComponent {
     this.state = {
       userAnswers: [false, false, false, false],
     };
+  }
+
+  _chooseAnswer(evt, userAnswers, i) {
+    const value = evt.target.checked;
+
+    this.setState({
+      userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+    });
   }
 
   render() {
@@ -66,7 +66,7 @@ class GenreQuestionScreen extends PureComponent {
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`}
                     id={`answer-${i}`}
                     checked={userAnswers[i]}
-                    onChange={(evt) => chooseAnswer(evt, userAnswers, i, this)}
+                    onChange={(evt) => this._chooseAnswer(evt, userAnswers, i, this)}
                   />
                   <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
                 </div>
