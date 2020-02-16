@@ -66,7 +66,7 @@ class GenreQuestionScreen extends PureComponent {
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`}
                     id={`answer-${i}`}
                     checked={userAnswers[i]}
-                    onChange={(evt) => this._chooseAnswer(evt, userAnswers, i, this)}
+                    onChange={(evt) => this._chooseAnswer(evt, userAnswers, i)}
                   />
                   <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
                 </div>
