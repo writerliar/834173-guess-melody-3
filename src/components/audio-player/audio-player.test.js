@@ -15,6 +15,7 @@ it(`AudioPlayer is renderer correctly`, () => {
       <AudioPlayer
         isPlaying={false}
         src={song.src}
+        onPlayButtonClick={() => {}}
       />, {
         createNodeMock: () => {
           return {};
