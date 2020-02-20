@@ -3,8 +3,8 @@ import AudioPlayer from "../../components/audio-player/audio-player.jsx";
 
 const withActivePlayer = (Component) => {
   class WithActivePlayer extends PureComponent {
-    constructor(...props) {
-      super(...props);
+    constructor(props) {
+      super(props);
 
       this.state = {
         activePlayerId: 0,
@@ -31,8 +31,6 @@ const withActivePlayer = (Component) => {
       );
     }
   }
-
-  WithActivePlayer.propTypes = {};
 
   return WithActivePlayer;
 };

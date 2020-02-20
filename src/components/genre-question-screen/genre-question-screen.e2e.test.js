@@ -50,6 +50,9 @@ it(`When user answers genre question form is not sent`, () => {
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
   expect(formSendPrevention).toHaveBeenCalledTimes(1);
+
+  expect(renderPlayer).toHaveBeenCalledTimes(4);
+  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
 });
 
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
@@ -78,4 +81,7 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   expect(
       genreQuestion.find(`input`).map((it) => it.prop(`checked`))
   ).toEqual(userAnswers);
+
+  expect(renderPlayer).toHaveBeenCalledTimes(8);
+  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
 });

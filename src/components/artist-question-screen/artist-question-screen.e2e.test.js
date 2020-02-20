@@ -55,6 +55,8 @@ it(`Click on user answer should pass to the callback data-object from which this
   answerOne.simulate(`change`, mockEvent);
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
+  expect(renderPlayer).toHaveBeenCalledTimes(1);
 
   expect(onAnswer).toHaveBeenLastCalledWith(question, userAnswer);
+  expect(renderPlayer).toHaveBeenLastCalledWith(question.song.src, 0);
 });
