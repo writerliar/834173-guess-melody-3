@@ -51,8 +51,11 @@ it(`When user answers genre question form is not sent`, () => {
   expect(onAnswer).toHaveBeenCalledTimes(1);
   expect(formSendPrevention).toHaveBeenCalledTimes(1);
 
-  expect(renderPlayer).toHaveBeenCalledTimes(4);
-  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
+  expect(renderPlayer).toHaveBeenCalledTimes(question.answers.length);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[0].src, 0);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[1].src, 1);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[2].src, 2);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[3].src, 3);
 });
 
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
@@ -72,6 +75,10 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   inputTwo.simulate(`change`, {target: {checked: true}});
 
   const form = genreQuestion.find(`form`);
+
+  expect(renderPlayer).toHaveBeenCalledTimes(8);
+  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
+
   form.simulate(`submit`, {preventDefault() {}});
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
@@ -81,7 +88,4 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   expect(
       genreQuestion.find(`input`).map((it) => it.prop(`checked`))
   ).toEqual(userAnswers);
-
-  expect(renderPlayer).toHaveBeenCalledTimes(8);
-  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
 });
