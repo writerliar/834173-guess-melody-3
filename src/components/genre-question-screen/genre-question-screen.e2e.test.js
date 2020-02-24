@@ -32,10 +32,12 @@ const question = {
 
 it(`When user answers genre question form is not sent`, () => {
   const onAnswer = jest.fn();
+  const renderPlayer = jest.fn();
   const genreQuestion = shallow(
       <GenreQuestionScreen
         question={question}
         onAnswer={onAnswer}
+        renderPlayer={renderPlayer}
       />
   );
 
@@ -48,16 +50,24 @@ it(`When user answers genre question form is not sent`, () => {
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
   expect(formSendPrevention).toHaveBeenCalledTimes(1);
+
+  expect(renderPlayer).toHaveBeenCalledTimes(question.answers.length);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[0].src, 0);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[1].src, 1);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[2].src, 2);
+  expect(renderPlayer).toHaveBeenCalledWith(question.answers[3].src, 3);
 });
 
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
   const onAnswer = jest.fn((...args) => [...args]);
+  const renderPlayer = jest.fn();
   const userAnswers = [false, true, false, false];
 
   const genreQuestion = shallow(
       <GenreQuestionScreen
         onAnswer={onAnswer}
         question={question}
+        renderPlayer={renderPlayer}
       />
   );
 
@@ -65,6 +75,10 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   inputTwo.simulate(`change`, {target: {checked: true}});
 
   const form = genreQuestion.find(`form`);
+
+  expect(renderPlayer).toHaveBeenCalledTimes(8);
+  expect(renderPlayer).toHaveBeenLastCalledWith(question.answers[3].src, 3);
+
   form.simulate(`submit`, {preventDefault() {}});
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
