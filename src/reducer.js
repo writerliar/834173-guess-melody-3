@@ -1,9 +1,19 @@
 import {extend} from "./utils.js";
-import {Steps} from "./const.js";
+import {Steps, GameTypes} from "./const.js";
 
 const initialState = {
   mistakes: 0,
   step: Steps.NO_STEPS,
+};
+
+const isArtistAnswerCorrect = (question, userAnswer) => {
+  return userAnswer.artist === question.song.artist;
+};
+
+const isGenreAnswerCorrect = (question, userAnswer) => {
+  return userAnswer.every((it, i) => {
+    return it === (question.answers[i].genre === question.genre);
+  });
 };
 
 const ActionType = {
@@ -16,10 +26,24 @@ const ActionCreator = {
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   }),
-  incrementMistakes: () => ({
-    type: ActionType.INCREMENT_MISTAKES,
-    payload: 1,
-  })
+
+  incrementMistakes: (question, userAnswer) => {
+    let answerIsCorrect = false;
+
+    switch (question.type) {
+      case GameTypes.ARTIST:
+        answerIsCorrect = isArtistAnswerCorrect(question, userAnswer);
+        break;
+      case GameTypes.GENRE:
+        answerIsCorrect = isGenreAnswerCorrect(question, userAnswer);
+        break;
+    }
+
+    return {
+      type: ActionType.INCREMENT_MISTAKES,
+      payload: answerIsCorrect ? 0 : 1,
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
