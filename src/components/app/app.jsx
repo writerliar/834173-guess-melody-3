@@ -14,23 +14,8 @@ const GenreQuestionScreenWrapper = withAudioPlayer(GenreQuestionScreen);
 const ArtistQuestionScreenWrapper = withAudioPlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
-  // constructor(props) {
-  //   super(props);
-  //
-  //   this.state = {
-  //     step: NO_STEPS,
-  //   };
-  // }
-
-  _setAnswer() {
-    this.setState((prevState) => ({
-      step: prevState.step + 1,
-    }));
-  }
 
   _renderGameScreen() {
-    // const {errorsCount, questions} = this.props;
-    // const {step} = this.state;
     const {
       errorsCount,
       questions,
@@ -45,12 +30,6 @@ class App extends PureComponent {
         <WelcomeScreen
           errorsCount={errorsCount}
           onWelcomeButtonClick={onWelcomeButtonClick}
-          // }}
-          // onWelcomeButtonClick={() => {
-          //   this.setState({
-          //     step: 0,
-          //   });
-          // }}
         />
       );
     }
@@ -64,7 +43,6 @@ class App extends PureComponent {
             >
               <ArtistQuestionScreenWrapper
                 question={question}
-                // onAnswer={() => this._setAnswer()}
                 onAnswer={onUserAnswer}
               />
             </GameScreen>
@@ -75,8 +53,7 @@ class App extends PureComponent {
               type={question.type}
             >
               <GenreQuestionScreenWrapper
-                question={question}
-                // onAnswer={() => this._setAnswer()}
+                question={question}ы
                 onAnswer={onUserAnswer}
               />
             </GameScreen>
