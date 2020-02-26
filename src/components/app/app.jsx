@@ -8,7 +8,7 @@ import GameScreen from "../game-screen/game-screen.jsx";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player.js";
-import {GameTypes, Steps,} from "../../const.js";
+import {GameTypes, Steps} from "../../const.js";
 
 const GenreQuestionScreenWrapper = withAudioPlayer(GenreQuestionScreen);
 const ArtistQuestionScreenWrapper = withAudioPlayer(ArtistQuestionScreen);
@@ -108,8 +108,9 @@ const mapDispatchToProps = (dispatch) => ({
   onWelcomeButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
-  onUserAnswer() {
-    dispatch(ActionCreator.incrementMistakes());
+  onUserAnswer(question, answer) {
+    dispatch(ActionCreator.incrementStep());
+    dispatch(ActionCreator.incrementMistakes(question, answer));
   },
 });
 
