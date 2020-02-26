@@ -1,8 +1,9 @@
 import {extend} from "./utils.js";
+import {Steps} from "./const.js";
 
 const initialState = {
   mistakes: 0,
-  step: -1,
+  step: Steps.NO_STEPS,
 };
 
 const ActionType = {
@@ -13,6 +14,10 @@ const ActionType = {
 const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
+    payload: 1,
+  }),
+  incrementMistakes: () => ({
+    type: ActionType.INCREMENT_MISTAKES,
     payload: 1,
   })
 };

@@ -9,4 +9,10 @@ export const TIMER_SVG_STYLES = {
   transformOrigin: `center`
 };
 
-export const NO_STEPS = -1;
+export const MAX_MISTAKES = 3;
+
+export const Steps = {
+  NO_STEPS: -1,
+  GENRE: 0,
+  ARTIST: 1,
+};

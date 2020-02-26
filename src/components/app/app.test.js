@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
+import {Steps, MAX_MISTAKES} from "../../const.js";
 
 const questions = [
   {
@@ -48,13 +49,54 @@ const questions = [
   }
 ];
 
-it(`Render App`, () => {
-  const tree = renderer
-  .create(<App
-    errorsCount={3}
-    questions={questions}
-  />)
-    .toJSON();
+describe(`Render App`, () => {
+  it(`Render WelcomeScreen`, () => {
+    const tree = renderer
+      .create(<App
+        errorsCount={MAX_MISTAKES}
+        questions={questions}
+        onUserAnswer={() => {}}
+        onWelcomeButtonClick={() => {}}
+        step={Steps.NO_STEPS}
+      />)
+      .toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render GenreQuestionScreen`, () => {
+    const tree = renderer
+      .create(<App
+        errorsCount={MAX_MISTAKES}
+        questions={questions}
+        onUserAnswer={() => {}}
+        onWelcomeButtonClick={() => {}}
+        step={Steps.GENRE}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render ArtistQuestionScreen`, () => {
+    const tree = renderer
+      .create(<App
+        errorsCount={MAX_MISTAKES}
+        questions={questions}
+        onUserAnswer={() => {}}
+        onWelcomeButtonClick={() => {}}
+        step={Steps.ARTIST}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
