@@ -63,7 +63,7 @@ describe(`Render App`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsCount={MAX_MISTAKES}
+              maxMistakes={MAX_MISTAKES}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
@@ -85,7 +85,7 @@ describe(`Render App`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsCount={MAX_MISTAKES}
+              maxMistakes={MAX_MISTAKES}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
@@ -111,7 +111,7 @@ describe(`Render App`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsCount={MAX_MISTAKES}
+              maxMistakes={MAX_MISTAKES}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}

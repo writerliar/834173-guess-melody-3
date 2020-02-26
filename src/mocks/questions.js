@@ -31,15 +31,15 @@ export default [
     },
     answers: [
       {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/A`,
         artist: `Ramones`,
       },
       {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/AB`,
         artist: `Nirvana`,
       },
       {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/AC`,
         artist: `Cranberries`,
       },
     ],
