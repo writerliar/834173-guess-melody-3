@@ -5,21 +5,9 @@ import {GameTypes} from "../../const.js";
 
 class GenreQuestionScreen extends PureComponent {
 
-  _chooseAnswer(evt, userAnswers, i) {
-    const value = evt.target.checked;
-
-    this.setState({
-      userAnswers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-    });
-  }
-
   render() {
     const {onAnswer, question, renderPlayer, userAnswers, onChange} = this.props;
-
-    const {
-      answers,
-      genre,
-    } = question;
+    const {answers, genre} = question;
 
     return (
       <section className="game__screen">
@@ -33,9 +21,9 @@ class GenreQuestionScreen extends PureComponent {
         >
           {answers.map((answer, i)=>(
             <GenreQuestionItem
-              key={`${i}-${answer.src}`}
               answer={answer}
               id={i}
+              key={`${i}-${answer.src}`}
               onChange={onChange}
               renderPlayer={renderPlayer}
               userAnswer={userAnswers[i]}

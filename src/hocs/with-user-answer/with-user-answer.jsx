@@ -17,30 +17,29 @@ const withUserAnswer = (Component) => {
 
     handleAnswer() {
       const {onAnswer, question} = this.props;
-      const {answers} = this.state;
+      const {userAnswers} = this.state;
 
-      onAnswer(question, answers);
+      onAnswer(question, userAnswers);
     }
 
     handleChange(i, value) {
-      const {answers} = this.state;
+      const {userAnswers} = this.state;
 
-      const userAnswers = answers.slice(0);
-      userAnswers[i] = value;
+      const answers = userAnswers.slice(0);
+      answers[i] = value;
 
       this.setState({
-        answers: userAnswers,
+        userAnswers: answers,
       });
-
     }
 
     render() {
-      const {answers} = this.state;
+      const {userAnswers} = this.state;
 
       return (
         <Component
           {...this.props}
-          userAnswers={answers}
+          userAnswers={userAnswers}
           onAnswer={this.handleAnswer}
           onChange={this.handleChange}
         />
