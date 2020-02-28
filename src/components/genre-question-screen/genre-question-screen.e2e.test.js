@@ -32,12 +32,15 @@ const question = {
 
 it(`When user answers genre question form is not sent`, () => {
   const onAnswer = jest.fn();
+  const onChange = jest.fn();
   const renderPlayer = jest.fn();
   const genreQuestion = shallow(
       <GenreQuestionScreen
         question={question}
         onAnswer={onAnswer}
         renderPlayer={renderPlayer}
+        userAnswers={[false, true, true, false]}
+        onChange={onChange}
       />
   );
 
@@ -60,6 +63,7 @@ it(`When user answers genre question form is not sent`, () => {
 
 it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
   const onAnswer = jest.fn((...args) => [...args]);
+  const onChange = jest.fn((...args) => [...args]);
   const renderPlayer = jest.fn();
   const userAnswers = [false, true, false, false];
 
@@ -68,6 +72,8 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
         onAnswer={onAnswer}
         question={question}
         renderPlayer={renderPlayer}
+        userAnswers={userAnswers}
+        onChange={onChange}
       />
   );
 
@@ -84,6 +90,7 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
   expect(onAnswer).toHaveBeenLastCalledWith(question, userAnswers);
+  expect(onAnswer).toHaveBeenLastCalledWith(void 0);
 
   expect(
       genreQuestion.find(`input`).map((it) => it.prop(`checked`))
