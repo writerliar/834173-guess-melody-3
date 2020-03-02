@@ -70,6 +70,7 @@ describe(`Render App`, () => {
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
               step={Steps.NO_STEPS}
+              resetGame={()=>{}}
             />
           </Provider>
       )
@@ -93,6 +94,7 @@ describe(`Render App`, () => {
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
               step={Steps.GENRE}
+              resetGame={()=>{}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -120,6 +122,7 @@ describe(`Render App`, () => {
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
               step={Steps.ARTIST}
+              resetGame={()=>{}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -144,6 +147,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={()=>{}}
             onWelcomeButtonClick={()=>{}}
+            resetGame={()=>{}}
             step={3}/>
         </Provider>, {
           createNodeMock: () => {
@@ -168,6 +172,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={()=>{}}
             onWelcomeButtonClick={()=>{}}
+            resetGame={()=>{}}
             step={1}/>
         </Provider>, {
           createNodeMock: () => {
