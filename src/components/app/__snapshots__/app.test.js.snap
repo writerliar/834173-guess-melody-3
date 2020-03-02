@@ -215,9 +215,9 @@ exports[`Render App Render GameWinScreen 1`] = `
   <p
     className="result__total"
   >
-    Вы ответили правильно на $
+    Вы ответили правильно на 
     2
-     вопросов и совершили $
+     вопросов и совершили 
     0
      ошибки
   </p>

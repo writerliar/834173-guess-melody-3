@@ -22,9 +22,9 @@ exports[`Should GameWinScreen render correctly 1`] = `
   <p
     className="result__total"
   >
-    Вы ответили правильно на $
+    Вы ответили правильно на 
     3
-     вопросов и совершили $
+     вопросов и совершили 
     2
      ошибки
   </p>
