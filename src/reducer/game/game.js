@@ -1,12 +1,16 @@
-import {extend} from "./utils.js";
-import questions from "./mocks/questions.js";
-import {Steps, GameTypes, MAX_MISTAKES} from "./const.js";
+import {extend} from "../../utils.js";
+import {GameTypes, MAX_MISTAKES, Steps} from "../../const";
 
 const initialState = {
   mistakes: 0,
   step: Steps.NO_STEPS,
   maxMistakes: MAX_MISTAKES,
-  questions,
+};
+
+const ActionType = {
+  INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
+  INCREMENT_STEP: `INCREMENT_STEP`,
+  RESET: `RESET`,
 };
 
 const isArtistAnswerCorrect = (question, userAnswer) => {
@@ -17,12 +21,6 @@ const isGenreAnswerCorrect = (question, userAnswer) => {
   return userAnswer.every((it, i) => {
     return it === (question.answers[i].genre === question.genre);
   });
-};
-
-const ActionType = {
-  INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
-  INCREMENT_STEP: `INCREMENT_STEP`,
-  RESET: `RESET`,
 };
 
 const ActionCreator = {
