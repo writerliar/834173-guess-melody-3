@@ -1,59 +1,12 @@
-import {reducer, ActionType, ActionCreator} from "./reducer";
-import {Steps} from "./const.js";
-import {MAX_MISTAKES} from "./const";
-
-const questions = [
-  {
-    type: `genre`,
-    genre: `rock`,
-    answers: [
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `rock`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `blues`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `jazz`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-        genre: `rock`,
-      },
-    ],
-  },
-  {
-    type: `artist`,
-    song: {
-      artist: `Ramones`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-    },
-    answers: [
-      {
-        picture: `https://api.adorable.io/avatars/128/A`,
-        artist: `Ramones`,
-      },
-      {
-        picture: `https://api.adorable.io/avatars/128/AB`,
-        artist: `Nirvana`,
-      },
-      {
-        picture: `https://api.adorable.io/avatars/128/AC`,
-        artist: `Cranberries`,
-      },
-    ],
-  }
-];
+import {reducer, ActionType, ActionCreator} from "./game.js";
+import {Steps} from "../../const.js";
+import {MAX_MISTAKES} from "../../const";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     step: Steps.NO_STEPS,
     mistakes: 0,
     maxMistakes: MAX_MISTAKES,
-    questions,
   });
 });
 
@@ -61,27 +14,23 @@ it(`Reducer should increment current step by a given value`, () => {
   expect(reducer({
     step: Steps.NO_STEPS,
     mistakes: 0,
-    questions,
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   })).toEqual({
     step: 0,
     mistakes: 0,
-    questions,
   });
 
   expect(reducer({
     step: Steps.NO_STEPS,
     mistakes: 0,
-    questions,
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 0,
   })).toEqual({
     step: Steps.NO_STEPS,
     mistakes: 0,
-    questions,
   });
 });
 
@@ -120,7 +69,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -133,7 +81,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -146,7 +93,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 });
 
