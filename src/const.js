@@ -16,3 +16,8 @@ export const Steps = {
   GENRE: 0,
   ARTIST: 1,
 };
+
+export const AuthorizationStatus = {
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`,
+};
