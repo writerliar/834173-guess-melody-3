@@ -19,7 +19,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import AuthorizationScreen from "../authorization-screen/authorization-screen.jsx";
 import history from "../../history.js";
-import AppRoute from "../../const.js";
+// import AppRoute from "../../const.js";
 
 const GenreQuestionScreenWrapper = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapper = withActivePlayer(ArtistQuestionScreen);
@@ -109,7 +109,7 @@ class App extends PureComponent {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path={AppRoute.ROOT}>
+          <Route exact path="/">
             {this._renderGameScreen()}
           </Route>
           <Route exact path="/dev-artist">
