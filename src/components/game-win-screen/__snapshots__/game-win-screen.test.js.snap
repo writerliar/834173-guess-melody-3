@@ -28,12 +28,12 @@ exports[`Should GameWinScreen render correctly 1`] = `
     2
      ошибки
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;
